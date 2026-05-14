@@ -86,6 +86,27 @@ strip_unmatched_closer() {
     ']') [[ "$rest" != *'['* ]] && s="$rest" ;;
     '}') [[ "$rest" != *'{'* ]] && s="$rest" ;;
     '>') [[ "$rest" != *'<'* ]] && s="$rest" ;;
+    '"') [[ "$rest" != *'"'* ]] && s="$rest" ;;
+    "'") [[ "$rest" != *"'"* ]] && s="$rest" ;;
+    '`') [[ "$rest" != *'`'* ]] && s="$rest" ;;
+  esac
+  printf '%s' "$s"
+}
+
+strip_unmatched_opener() {
+  local s="$1"
+  local len=${#s}
+  ((len == 0)) && { printf '%s'; return; }
+  local first="${s:0:1}"
+  local rest="${s:1}"
+  case "$first" in
+    '(') [[ "$rest" != *')'* ]] && s="$rest" ;;
+    '[') [[ "$rest" != *']'* ]] && s="$rest" ;;
+    '{') [[ "$rest" != *'}'* ]] && s="$rest" ;;
+    '<') [[ "$rest" != *'>'* ]] && s="$rest" ;;
+    '"') [[ "$rest" != *'"'* ]] && s="$rest" ;;
+    "'") [[ "$rest" != *"'"* ]] && s="$rest" ;;
+    '`') [[ "$rest" != *'`'* ]] && s="$rest" ;;
   esac
   printf '%s' "$s"
 }
@@ -98,6 +119,7 @@ clean() {
     s=$(strip_trailing_line_suffix "$s")
     s=$(strip_trailing_punct "$s")
     s=$(strip_unmatched_closer "$s")
+    s=$(strip_unmatched_opener "$s")
   done
   printf '%s' "$s"
 }

@@ -49,6 +49,14 @@ check "url with markdown-style trailing paren" 'https://x.com)' 'https://x.com'
 check "ipv6-ish no strip" '[::1]' '::1'
 check "empty input" '' ''
 check "all punctuation" '...' ''
+check "unmatched leading single-quote" "'TEST:" 'TEST'
+check "unmatched leading double-quote" '"hello' 'hello'
+check "unmatched leading backtick" '`cmd' 'cmd'
+check "unmatched leading paren" '(hello' 'hello'
+check "balanced inline quote not stripped" "'hello'world" "'hello'world"
+check "trailing unmatched single-quote then digits" "/tmp/foo.py:42'" "/tmp/foo.py"
+check "trailing unmatched double-quote" 'hello"' 'hello'
+check "trailing unmatched backtick" 'cmd`' 'cmd'
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 [[ $fail -eq 0 ]]

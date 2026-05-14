@@ -6,5 +6,8 @@ set -u
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HANDLER="$CURRENT_DIR/scripts/triple-click.sh"
 
+# Handler manages copy-mode itself; it positions the cursor explicitly
+# rather than relying on `copy-mode -H` (which despite appearances does
+# NOT land at the click position — it just hides the indicator).
 tmux bind-key -n TripleClick1Pane \
   run-shell "$HANDLER '#{pane_id}' '#{mouse_x}' '#{mouse_y}'"

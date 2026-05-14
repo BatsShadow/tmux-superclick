@@ -26,7 +26,7 @@ A token "looks interesting" — and therefore triggers chunk-copy — if, after 
 | `/select/a/path:100`                    | `/select/a/path`              |
 | any word in `this is a normal sentence` | the whole line                |
 
-A brief `display-message` shows what was copied. (v1 does not flash an in-pane highlight; the confirmation message provides feedback. This may change later.)
+The cleaned range flashes briefly in the pane as it's copied — same visual feel as native double-click.
 
 ## Install
 
@@ -84,7 +84,6 @@ Unit tests for the cleaning function use plain bash — no extra deps:
 
 - Chunks wrapped across multiple display rows are not reassembled — only the clicked row is inspected.
 - Multi-byte / wide characters (CJK, emoji) may shift column math by one cell.
-- No in-pane highlight flash on copy (`display-message` confirmation only).
 - No user-configurable options yet.
 
 ## License
