@@ -1,0 +1,22 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run cleaning tests
+        run: ./tests/test_clean.sh
+
+      - name: Run cell-utility tests
+        run: ./tests/test_cells.sh
