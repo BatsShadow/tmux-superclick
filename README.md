@@ -8,7 +8,7 @@ Triple-click on a token of interest (URL, path, identifier with separators) and 
 
 What gets stripped from a chunk before copying:
 
-- Matched outer pairs: `()`, `[]`, `{}`, `<>`, `""`, `''`, `` `` ``
+- Matched outer pairs: `()`, `[]`, `{}`, `<>`, `""`, `''`, ` ` ``
 - Trailing `:line` or `:line:col` (e.g. `foo.py:42` → `foo.py`)
 - Trailing `,.;:!?`
 - Unmatched closing brackets (e.g. markdown `[txt](url)` clicked on the tail → `url`)
@@ -17,14 +17,14 @@ A token "looks interesting" — and therefore triggers chunk-copy — if, after 
 
 ### Examples
 
-| You triple-click on | Clipboard gets |
-| --- | --- |
-| `(https://example.com),` | `https://example.com` |
-| `"~/foo/bar.txt"` | `~/foo/bar.txt` |
-| `foo.py:42` | `foo.py` |
-| `select-entire-hyphen-string` | `select-entire-hyphen-string` |
-| `/select/a/path:100` | `/select/a/path` |
-| any word in `this is a normal sentence` | the whole line |
+| You triple-click on                     | Clipboard gets                |
+| --------------------------------------- | ----------------------------- |
+| `(https://example.com),`                | `https://example.com`         |
+| `"~/foo/bar.txt"`                       | `~/foo/bar.txt`               |
+| `foo.py:42`                             | `foo.py`                      |
+| `select-entire-hyphen-string`           | `select-entire-hyphen-string` |
+| `/select/a/path:100`                    | `/select/a/path`              |
+| any word in `this is a normal sentence` | the whole line                |
 
 A brief `display-message` shows what was copied. (v1 does not flash an in-pane highlight; the confirmation message provides feedback. This may change later.)
 
@@ -35,7 +35,7 @@ A brief `display-message` shows what was copied. (v1 does not flash an in-pane h
 Add to `~/.tmux.conf`:
 
 ```tmux
-set -g @plugin 'YOUR-NAME/tmux-superclick'
+set -g @plugin 'BatsShadow/tmux-superclick'
 ```
 
 Then `prefix + I` to install.
